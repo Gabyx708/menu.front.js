@@ -1,0 +1,21 @@
+/* Estilos para la sección de información del menú */
+#menu_id {
+    display: inline-block;
+    font-weight: bold;
+    font-size: 1.1em;
+    color: #333;
+}
+
+/* Estilos para las opciones del menú */
+#opciones_menu {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 20px;
+    padding: 20px 0;
+}
+
+section
+{
+    padding: 2rem;
+    text-align: center;
+}
