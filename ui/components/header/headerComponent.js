@@ -6,7 +6,7 @@ export default function HeaderComponent() {
         <nav class="header-nav">
             <ul class="nav-list">
                 ${crearPestaña("Home", "🏠", "/pages/home/home.html")}
-                ${crearPestaña("Mis pedidos", "🧾", "/pages/pedidos/pedidos.html")}
+                ${crearPestaña("Mi historial", "🧾", "/pages/historial/historial.html")}
                 ${crearPestaña("Menú semanal", "📅", "/pages/menues/menues.html")}
                 ${crearPestaña("Mi perfil", "👤", "/pages/perfil/perfil.html")}
                 ${crearPestaña("Cerrar sesión", "🚪", "/pages/login/login.html")}
