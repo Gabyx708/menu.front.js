@@ -5,7 +5,7 @@ export default function FooterComponent() {
 
     footer.innerHTML = `
         <div class="footer-container">
-            <p>&copy; 2025 Mi Aplicación. Todos los derechos reservados.</p>
+            <p>&copy; 2025 Menu. v: web.2.0.0</p>
         </div>
     `;
 }

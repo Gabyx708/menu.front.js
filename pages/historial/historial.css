@@ -1,0 +1,84 @@
+/* Sección principal */
+section {
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Título del historial */
+section h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #444;
+    text-align: center;
+}
+
+hr {
+    margin-top: 0.5rem;
+    border: none;
+    border-top: 1px solid #ccc;
+}
+
+/* Inputs de fechas */
+.filtro-fechas {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+input[type="date"] {
+    padding: 0.4rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.filtro-fechas button {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border: none;
+    background-color: #28a745;
+    color: white;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.filtro-fechas button:hover {
+    background-color: #218838;
+}
+
+/* Contenedor de resultado de pedidos */
+#resultado_pedidos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 1rem;
+}
+
+/* Contenedor de paginación */
+.paginacion {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.paginacion button {
+    padding: 0.5rem 1rem;
+    border: none;
+    background-color: #007BFF;
+    color: white;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.paginacion button:hover {
+    background-color: #0056b3;
+}

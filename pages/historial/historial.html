@@ -3,28 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/ui/components/tarjetaHistorial/tarjetaHistorial.css">
+    <link rel="stylesheet" href="historial.css">
     <title>Historial</title>
 </head>
 <body>
     <header></header>
-
+    
     <section>
         <h2>HISTORIAL</h2>
         <hr>
     </section>
+    <section class="filtro-fechas">  
+        <label for="fecha_inicio">Desde:</label>
+        <input type="date" id="fecha_inicio">
     
-    <section>
-        <p><strong>DESDE:</strong></p>
-        <input type="date" id="fecha_inicio"/>
-        <p><strong>HASTA:</strong></p>
-        <input type="date" id="fecha_fin"/>
-        <p><strong>PAGINA: 1/2</strong></p> <!--AGREGAR BOTON + Y MENOS PARA MOVERSE ENTRE PAGINAS-->
+        <label for="fecha_fin">Hasta:</label>
+        <input type="date" id="fecha_fin">
+    
+        <button id="btn_filtrar">Filtrar</button>
     </section>
-
+    
+    <section class="paginacion">
+        <button id="pagina_anterior">←</button>
+        <p><strong>PÁGINA: <span id="pagina_actual">1</span>/<span id="total_paginas">1</span></strong></p>
+        <button id="pagina_siguiente">→</button>
+    </section>
+    
     <section id="resultado_pedidos">
-        <!--usando codigo debemos agregar los pedidos , importante se vea la Fecha consumo ,el id y el montoTotal-->
+        <!-- Aquí se agregarán los pedidos -->
     </section>
-
     
 
     <footer></footer>
