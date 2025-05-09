@@ -1,43 +1,60 @@
-/* Estilos generales para la tarjeta de opción */
 .tarjeta-opcion {
-    background-color: #f9f9f9e1;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 16px;
-    margin: 12px;
-    max-width: auto;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-    font-family: Arial, sans-serif;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    padding: 1.25em;
+    margin: 0.75em;
+    border-radius: 10px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border-left: 4px solid #28a745;
+}
+
+.tarjeta-opcion:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.16);
 }
 
 .tarjeta-opcion p {
-    margin: 6px 0;
-    font-size: 14px;
+    margin: 0.5em 0;
+    color: #333;
+    font-size: 0.9rem;
+    line-height: 1.4;
 }
 
 .tarjeta-opcion p strong {
-    color: #333;
+    color: #444;
 }
 
 .tarjeta-opcion button {
-    padding: 10px 16px;
-    background-color: #0066cc;
+    margin-top: 1em;
+    padding: 0.75em 1em;
+    background-color: #28a745;
     color: white;
+    font-weight: 600;
     border: none;
-    border-radius: 4px;
+    border-radius: 6px;
     cursor: pointer;
-    margin-top: 12px;
-    align-self: center; /* Centra el botón */
-    transition: background-color 0.3s ease;
+    transition: background-color 0.2s ease;
+    align-self: stretch;
 }
 
 .tarjeta-opcion button:hover {
-    background-color: #004999;
+    background-color: #218838;
 }
 
-.tarjeta-opcion button:focus {
-    outline: none;
+.tarjeta-opcion button:active {
+    background-color: #1e7e34;
+}
+
+.tarjeta-opcion.sin-stock {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.tarjeta-opcion.sin-stock button {
+    background-color: #999;
+    cursor: not-allowed;
 }

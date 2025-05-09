@@ -1,6 +1,5 @@
 .tarjeta-menu {
-    flex: 1 1 250px; /* base adaptable, mínimo 250px */
-    max-width: 300px;
+    width: 1fr;
     padding: 1.5em;
     margin: 0.5em;
     border-radius: 8px;

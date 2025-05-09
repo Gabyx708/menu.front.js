@@ -7,9 +7,10 @@ export default function TarjetaOpcionMenuComponent(opcion) {
 
     const precioFormateado = formatter.format(opcion.precio);
     const stockRestante = opcion.stock - opcion.solicitados;
+    const sinStock = stockRestante <= 0 ? ' sin-stock' : '';
 
     return `
-        <div class="tarjeta-opcion">
+        <div class="tarjeta-opcion${sinStock}">
             <p><strong>Descripción:</strong> ${opcion.descripcion}</p>
             <p><strong>Precio:</strong> ${precioFormateado}</p>
             <p><strong>Quedan:</strong> ${stockRestante}</p>

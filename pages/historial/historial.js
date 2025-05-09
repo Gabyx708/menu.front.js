@@ -44,8 +44,9 @@ async function cargarHistorial() {
     }
 
     let data = await response.json();
-    let listaPedidos = data.data.resultados;
- 
+    let listaResultados = data.data.resultados;  
+    let listaPedidos =  listaResultados.sort((a, b) => new Date(b.fechaEntrega) - new Date(a.fechaEntrega));
+
     $resultado.innerHTML = "";
 
     if (listaPedidos.length > 0) {
@@ -112,6 +113,8 @@ async function ObtenerDatosPedido(idPedido)
 
     const data = await response.json();
     guardarPedidoLocal(data.data);
+
+    window.location.href = "../pedido/pedido.html";
 }
 window.onload = async () =>
 {

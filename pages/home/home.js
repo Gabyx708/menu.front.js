@@ -4,13 +4,14 @@ import TarjetaMenuComponent from "../../ui/components/tarjetaMenu/tarjetaMenuCom
 
 window.onload = async() =>
 {
-   let menuesLocal = obtenerMenuesLocal();
+    let menuesLocal = obtenerMenuesLocal();
 
 
-   if(menuesLocal === null || menuesLocal.length === 0)
+   if(menuesLocal === null)
    {
-        menuesLocal = await ObtenerMenuesWeb();
+         await ObtenerMenuesWeb();
    }
+
 
    let menues = Array.from(menuesLocal);
    agregarTarjetasMenu(menues);

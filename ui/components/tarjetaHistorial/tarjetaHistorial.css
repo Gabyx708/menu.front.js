@@ -1,7 +1,7 @@
 .tarjeta-historial {
     border: 1px solid #ccc;
     border-radius: 8px;
-    padding: 1rem;
+    padding: 1.5rem;
     margin-bottom: 1rem;
     background-color: #f9f9f9;
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
@@ -39,4 +39,15 @@
     cursor: pointer;
     transition: all 1s;
     scale: 1.1;
+}
+
+.sub-text-tarjeta
+{   
+    padding: 0.1%;
+}
+
+.pedido-data
+{
+    text-align: justify;
+    font-size: small;
 }

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detalle del Pedido</title>
+  <link rel="stylesheet" href="pedido.css">
+</head>
+<body>
+  <header></header>
+
+  <main class="container">
+    <section class="info-pedido">
+      <h2>Pedido <span id="pedido_id"></span></h2>
+      <p><strong>Cliente:</strong> <span id="cliente_nombre"></span> (DNI: <span id="cliente_dni"></span>)</p>
+      <p><strong>Fecha:</strong> <span id="fecha_pedido"></span></p>
+      <p><strong>Entrega:</strong> <span id="fecha_entrega"></span></p>
+      <p><strong>Estado:</strong> <span id="estado_pedido"></span></p>
+    </section>
+
+    <section class="items-pedido">
+      <h3>Ítems del Pedido</h3>
+      <ul id="lista_items"></ul>
+    </section>
+
+    <section class="movimientos-pedido">
+      <h3>Historial de Estados</h3>
+      <ul id="lista_movimientos"></ul>
+    </section>
+
+    <section class="recibo-pedido">
+      <h3>Recibo</h3>
+      <p><strong>ID Recibo:</strong> <span id="recibo_id"></span></p>
+      <p><strong>Pagar:</strong> $<span id="recibo_total"></span></p>
+      <p><strong>Fecha:</strong> <span id="recibo_fecha"></span></p>
+    </section>
+
+    <section class="acciones-pedido">
+        <button id="btn_cancelar_pedido">Cancelar Pedido</button>
+      </section>
+      
+  </main>
+
+  <footer></footer>
+
+  <script type="module" src="pedido.js"></script>
+  <script src="../../utils/agregarHeaderFooter.js" type="module"></script>
+</body>
+</html>

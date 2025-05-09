@@ -3,16 +3,16 @@ export default function HeaderComponent() {
     if (!header) return;
 
     header.innerHTML = `
-        <nav class="header-nav">
-            <ul class="nav-list">
-                ${crearPestaña("Home", "🏠", "/pages/home/home.html")}
-                ${crearPestaña("Mi historial", "🧾", "/pages/historial/historial.html")}
-                ${crearPestaña("Menú semanal", "📅", "/pages/menues/menues.html")}
-                ${crearPestaña("Mi perfil", "👤", "/pages/perfil/perfil.html")}
-                ${crearPestaña("Cerrar sesión", "🚪", "/pages/login/login.html")}
-            </ul>
-        </nav>
-    `;
+    <nav class="header-nav">
+        <ul class="nav-list">
+            ${crearPestaña("Home", "house.png", "/pages/home/home.html")}
+            ${crearPestaña("Mi historial", "clock.png", "/pages/historial/historial.html")}
+            ${crearPestaña("Mi perfil", "userWhite.png", "/pages/perfil/perfil.html")}
+            ${crearPestaña("Cerrar sesión", "exit.png", "/index.html")}
+        </ul>
+    </nav>
+`;
+
 
     // Asignar evento click a cada botón
     const botones = header.querySelectorAll(".nav-button");
@@ -26,13 +26,14 @@ export default function HeaderComponent() {
     });
 }
 
-function crearPestaña(texto, icono, href) {
+function crearPestaña(texto, nombreImagen, href) {
     return `
         <li class="nav-item">
             <button class="nav-button" data-href="${href}">
-                <span class="nav-icon">${icono}</span>
+                <img src="/img/${nombreImagen}" alt="${texto}" />
                 <span>${texto}</span>
             </button>
         </li>
     `;
 }
+

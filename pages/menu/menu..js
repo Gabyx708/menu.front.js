@@ -1,4 +1,5 @@
 import { getMenuSeleccionado } from "../../services/local/guardarmenuesSemanal.js";
+import { guardarPedidoLocal } from "../../services/local/guardarPedido.js";
 import hacerUnPedido from "../../services/web/hacerUnPedido.js";
 import TarjetaOpcionMenuComponent from "../../ui/components/tarjetaOpcionMenu/tarjetaOpcionMenuComponent.js";
 
@@ -6,9 +7,8 @@ function pintarMenu()
 {
     let menuActual = getMenuSeleccionado();
 
-    setMenuId(menuActual);
     cargarOpciones(menuActual);
-
+    setDatosMenu(menuActual);
 }
 
 function cargarOpciones(menu)
@@ -46,11 +46,24 @@ botones.forEach(btn => {
 
 }
 
-function setMenuId(menu)
+function setDatosMenu(menu)
 {
     let menuIdParrafo = document.getElementById("menu_id");
     menuIdParrafo.textContent = menu.id;
+
+   
+    let fechaConsumo = new Date(menu.fechaConsumo);
+    let fechaCierre = new Date(menu.fechaCierre);
+
+    document.getElementById("fecha_consumo").textContent = fechaConsumo.toLocaleDateString();
+    document.getElementById("fecha_cierre").textContent = fechaCierre.toLocaleDateString()+" "+fechaCierre.toLocaleTimeString()+"hs";
+
+    if(new Date() > fechaCierre)
+    {
+        MostrarMenuCerrado();
+    }
 }
+
 
 async function prepararPeticion(idMenu,idPlato)
 {
@@ -83,6 +96,10 @@ const hacerPeticion = async(idMenu,idPlato) => {
             text: `se creo el pedido: ${responseContent.data.id}`,
             icon: "success"
           });
+
+          await guardarPedidoLocal(responseContent.data);
+          location.href = "/pages/pedido/pedido.html";
+          
     }
 
     if(!response.ok)
@@ -94,5 +111,20 @@ const hacerPeticion = async(idMenu,idPlato) => {
             })
     }
 }
+
+function MostrarMenuCerrado() {
+
+    let opciones = document.getElementsByClassName("tarjeta-opcion");
+    const alerta = document.getElementById("alerta-menu-cerrado");
+
+    if (alerta) {
+        alerta.style.display = "block"; 
+    }
+
+    Array.from(opciones).forEach((tarjeta) => {
+        tarjeta.classList.add("sin-stock");
+    });
+}
+
 
 pintarMenu();

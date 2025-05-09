@@ -1,5 +1,6 @@
 function guardarMenues(menues) 
 {
+    menues.sort((a, b) => new Date(a.fechaConsumo) - new Date(b.fechaConsumo));
     sessionStorage.setItem("menues", JSON.stringify(menues));
 }
 

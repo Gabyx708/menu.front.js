@@ -8,7 +8,7 @@ const DIAS = [
 ];
 
 
-export default function convertirFechaStr(fechaConvertir) 
+export default function convertirFechaStr(fechaConvertir,esResumida = false) 
 {  
     let fecha = new Date(fechaConvertir);
 
@@ -20,7 +20,13 @@ export default function convertirFechaStr(fechaConvertir)
     let hora = fecha.getHours();
     let minutos = fecha.getMinutes();
 
+    let fechaString = `${DIAS[dia]} ${diaMes} <br> ${MESES[month]}` 
+
+    if(esResumida)
+    {
+        fechaString = `${DIAS[dia]} ${diaMes}`
+    }
 
 
-    return `${DIAS[dia]} ${diaMes} <br> ${MESES[month]}`.toUpperCase();
+    return fechaString.toUpperCase();
 }
