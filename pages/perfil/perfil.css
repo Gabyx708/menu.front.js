@@ -1,0 +1,86 @@
+section {
+    max-width: 600px;
+    margin: 2rem auto;
+    background-color: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+}
+
+section p {
+    margin: 1rem 0;
+    font-size: 1rem;
+}
+
+section p strong {
+    color: #1f2937;
+}
+
+button#btnCambiarPassword {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 1.5rem;
+}
+
+button#btnCambiarPassword:hover {
+    background-color: #1d4ed8;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  width: 500px;
+  height: 500px;
+  align-items: center;
+}
+
+.hidden {
+  display: none;
+}
+
+#formCambiarPassword
+{
+    display:  grid;
+    grid-gap: 1em;
+    padding: 1%;
+}
+
+#formCambiarPassword> button{
+    background-color: red;
+    border-radius: 10px;
+    font-weight: bold;
+    padding: 2%;
+    color:  white;
+    cursor: pointer;
+}
+
+#formCambiarPassword> button:hover{
+    background-color: rgb(46, 42, 42)
+}
+#formCambiarPassword > input 
+{
+    height: 2rem;
+    border-color: #1f2937;
+    border: 2px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    
+}

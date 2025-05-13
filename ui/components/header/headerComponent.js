@@ -1,14 +1,21 @@
+import { getUsuarioActual } from "../../../services/local/guardarUsuario.js";
+
 export default function HeaderComponent() {
+
+    const apodo = getUsuarioActual().apodo;
     const header = document.querySelector("header");
     if (!header) return;
 
     header.innerHTML = `
     <nav class="header-nav">
+        <div id="usuario">
+         <p>Bienvenido: ${apodo} !</p>
+        </div>
         <ul class="nav-list">
             ${crearPestaña("Home", "house.png", "/pages/home/home.html")}
             ${crearPestaña("Mi historial", "clock.png", "/pages/historial/historial.html")}
             ${crearPestaña("Mi perfil", "userWhite.png", "/pages/perfil/perfil.html")}
-            ${crearPestaña("Cerrar sesión", "exit.png", "/index.html")}
+            ${crearPestaña("Cerrar sesión", "exit.png", "/cerrar.html")}
         </ul>
     </nav>
 `;

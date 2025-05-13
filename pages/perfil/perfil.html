@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/ui/components/tarjetaMenu/tarjetaMenuComponent.css">
+    <link rel="stylesheet" href="perfil.css">
+    <title>Perfil</title>
+</head>
+<body>
+    <header> </header>
+        <section>
+            <p>Apodo: <strong id="apodo">{Nombre apodo}</strong></p>
+            <p>Nombre: <strong id="nombres">{nombre y apellido}</strong></p>
+            <!-- <p>Nacimiento: <strong id="nacimiento">{nombre y apellido}</strong></p>
+            <p>Ingreso: <strong id="ingreso">{nombre y apellido}</strong></p>
+            <p>Email: <strong id="email">{nombre y apellido}</strong></p>
+            <p>Celular: <strong id="celular">{nombre y apellido}</strong></p> -->
+        </section>
+        <section>
+            <button id="btnCambiarPassword">CAMBIAR PASSWORD</button>
+        </section>
+
+        <div id="modalPassword" class="modal hidden">
+            <div class="modal-content">
+                <h2>Cambiar Contraseña</h2>
+                <form id="formCambiarPassword">
+                    <label for="passwordActual">Contraseña actual:</label>
+                    <input type="password" id="passwordActual" required>
+        
+                    <label for="nuevaPassword">Nueva contraseña:</label>
+                    <input type="password" id="nuevaPassword" required>
+        
+                    <button type="submit">Cambiar</button>
+                    <button type="button" id="cerrarModal">Cancelar</button>
+                </form>
+  </div>
+</div>
+
+
+    <footer></footer>
+<script src="../../utils/agregarHeaderFooter.js" type="module"></script>
+<script src="perfil.js" type="module"></script>
+</body>
+</html>

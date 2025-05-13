@@ -7,7 +7,7 @@ function guardarMenues(menues)
 function obtenerMenuesLocal()
 {
     let menues = sessionStorage.getItem("menues");
-    return JSON.parse(menues);
+    return menues ? JSON.parse(menues) : null;
 }
 
 function obtenerMenuGuardado(idMenu) {

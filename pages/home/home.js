@@ -2,20 +2,19 @@ import { guardarMenues,obtenerMenuesLocal, obtenerMenuGuardado } from "../../ser
 import getMenuesSemana from "../../services/web/getMenuesSemana.js"
 import TarjetaMenuComponent from "../../ui/components/tarjetaMenu/tarjetaMenuComponent.js";
 
-window.onload = async() =>
-{
+window.onload = async () => {
+    
     let menuesLocal = obtenerMenuesLocal();
 
+    if (menuesLocal === null) {
+        await ObtenerMenuesWeb();
+        menuesLocal = obtenerMenuesLocal();
+    }
 
-   if(menuesLocal === null)
-   {
-         await ObtenerMenuesWeb();
-   }
+    let menues = Array.from(menuesLocal);
+    agregarTarjetasMenu(menues);
+};
 
-
-   let menues = Array.from(menuesLocal);
-   agregarTarjetasMenu(menues);
-}
 
 async function ObtenerMenuesWeb ()
 {
