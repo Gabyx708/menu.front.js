@@ -1,8 +1,11 @@
-import { guardarMenues,obtenerMenuesLocal, obtenerMenuGuardado } from "../../services/local/guardarmenuesSemanal.js";
+import ObtenerHistorialReciente from "../../services/local/guardarHistorialReciente.js";
+import { guardarMenues,obtenerMenuesLocal, obtenerMenuGuardado } from "/services/local/guardarMenuesSemanal.js";
 import getMenuesSemana from "../../services/web/getMenuesSemana.js"
 import TarjetaMenuComponent from "../../ui/components/tarjetaMenu/tarjetaMenuComponent.js";
 
 window.onload = async () => {
+
+   let historialReciente = await ObtenerHistorialReciente();
     
     let menuesLocal = obtenerMenuesLocal();
 
@@ -13,6 +16,8 @@ window.onload = async () => {
 
     let menues = Array.from(menuesLocal);
     agregarTarjetasMenu(menues);
+
+    MostrarSiExistePedidoParaMenu(historialReciente,menues);
 };
 
 
@@ -71,3 +76,34 @@ function irPaginaMenu()
 {
     window.location.href = '../menu/menu.html';
 }
+
+function MostrarSiExistePedidoParaMenu(pedidos,menues)
+{
+  pedidos.forEach((p) =>{
+
+    menues.forEach((m)=>{
+
+        let fechaConsumoMenu = new Date(m.fechaConsumo);
+        let fechaEntregaPedido = new Date(p.fechaEntrega);
+
+        if(fechaConsumoMenu.getDate() == fechaEntregaPedido.getDate())
+        {
+            pintarMenuConPedido(m.id);
+        }
+    })
+  })
+}
+
+
+function pintarMenuConPedido(menuId)
+{  
+    let tarjetaMenu = document.getElementById(menuId);
+
+    if (tarjetaMenu) {
+        let alerta = tarjetaMenu.querySelector('.alerta-pedido-hecho');
+        if (alerta) {
+            alerta.style.display = 'block'; // Muestra la alerta
+        }
+    }
+}
+

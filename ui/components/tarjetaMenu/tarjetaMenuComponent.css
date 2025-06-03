@@ -36,3 +36,15 @@
 .menu_id{
     font-size: 10pt;
 }
+
+
+.alerta-pedido-hecho {
+    display: none; /* Oculta inicialmente */
+    color: white;
+    padding: 0.5rem;
+    width: 100%;
+    font-weight: bold;
+    border-radius: 5px;
+    background-color: green;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+}

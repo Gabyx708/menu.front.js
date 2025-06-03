@@ -1,0 +1,11 @@
+{
+  "name": "menu.web.frontend",
+  "version": "2.0.0",
+  "description": "aplicacion web para interactuar con el sistema de viandas",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
