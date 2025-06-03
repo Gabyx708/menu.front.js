@@ -1,7 +1,8 @@
-import { getMenuSeleccionado } from "../../services/local/guardarmenuesSemanal.js";
-import { guardarPedidoLocal } from "../../services/local/guardarPedido.js";
-import hacerUnPedido from "../../services/web/hacerUnPedido.js";
-import TarjetaOpcionMenuComponent from "../../ui/components/tarjetaOpcionMenu/tarjetaOpcionMenuComponent.js";
+import { ObtenerHistorialRecienteLoca } from "/services/local/guardarHistorialReciente.js";
+import { getMenuSeleccionado } from "/services/local/guardarmenuesSemanal.js";
+import { guardarPedidoLocal } from "/services/local/guardarPedido.js";
+import hacerUnPedido from "/services/web/hacerUnPedido.js";
+import TarjetaOpcionMenuComponent from "/ui/components/tarjetaOpcionMenu/tarjetaOpcionMenuComponent.js";
 
 function pintarMenu()
 {
@@ -62,6 +63,8 @@ function setDatosMenu(menu)
     {
         MostrarMenuCerrado();
     }
+
+    MostrarSiExistePedido(menu);
 }
 
 
@@ -128,3 +131,35 @@ function MostrarMenuCerrado() {
 
 
 pintarMenu();
+
+
+function MostrarSiExistePedido(menu)
+{
+    let pedidos = ObtenerHistorialRecienteLoca();
+
+    let pedidosConfirmados = Array.from(pedidos).filter(p => p.estado === 1);
+
+    pedidosConfirmados.forEach((p) => {
+
+       let fechaConsumoMenu = new Date(menu.fechaConsumo);
+       let fechaEntregaPedido = new Date(p.fechaEntrega);
+
+       if(fechaConsumoMenu.getDate() == fechaEntregaPedido.getDate())
+       {
+            const alerta = document.getElementById("alerta-menu-cerrado");
+            let opciones = document.getElementsByClassName("tarjeta-opcion");
+
+
+            if (alerta) {
+                alerta.style.display = "block";
+                alerta.textContent = "YA HICISTE UN PEDIDO" 
+                alerta.style.backgroundColor = "green"
+
+                
+                Array.from(opciones).forEach((tarjeta) => {
+                tarjeta.classList.add("sin-stock");
+                });
+            }
+       }
+    })
+}

@@ -2,12 +2,6 @@ import { getPedidosSegunFechaConsumo } from "/services/web/getPedidosSegunFechaC
 
 export default async function ObtenerHistorialReciente()
 {
-    let historial = sessionStorage.getItem("reciente");
-    
-    if(historial)
-    {
-        return await JSON.parse(historial);
-    }
 
     const fechaActual = new Date();
     const diaSemana = fechaActual.getDay();
@@ -29,4 +23,9 @@ export default async function ObtenerHistorialReciente()
     sessionStorage.setItem('reciente',JSON.stringify(pedidos));
 
     return pedidos;
+}
+
+export function ObtenerHistorialRecienteLoca()
+{  
+    return JSON.parse(sessionStorage.getItem('reciente'));
 }

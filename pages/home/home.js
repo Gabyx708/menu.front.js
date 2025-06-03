@@ -79,7 +79,10 @@ function irPaginaMenu()
 
 function MostrarSiExistePedidoParaMenu(pedidos,menues)
 {
-  pedidos.forEach((p) =>{
+ 
+  const confirmado = 1;
+  let pedidosConfirmados = pedidos.filter(p => p.estado === confirmado);
+  pedidosConfirmados.forEach((p) =>{
 
     menues.forEach((m)=>{
 
