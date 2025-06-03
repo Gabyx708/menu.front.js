@@ -9,9 +9,11 @@ export default function TarjetaOpcionMenuComponent(opcion) {
     const stockRestante = opcion.stock;
     const sinStock = opcion.stock === 0 ? ' sin-stock' : '';
 
+    let descripcion = opcion.descripcion; 
+
     return `
         <div class="tarjeta-opcion${sinStock}">
-            <p><strong>Descripción:</strong> ${opcion.descripcion}</p>
+            <h3><strong>${new String(descripcion).toUpperCase()}</strong> </h3>
             <p><strong>Precio:</strong> ${precioFormateado}</p>
             <p><strong>Quedan:</strong> ${stockRestante}</p>
             <p><strong>Pedidos:</strong> ${opcion.solicitados}</p>

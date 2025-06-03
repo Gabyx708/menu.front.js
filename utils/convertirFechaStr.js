@@ -8,7 +8,7 @@ const DIAS = [
 ];
 
 
-export default function convertirFechaStr(fechaConvertir,esResumida = false) 
+export default function convertirFechaStr(fechaConvertir,esResumida = false,conHoras = false) 
 {  
     let fecha = new Date(fechaConvertir);
 
@@ -25,6 +25,11 @@ export default function convertirFechaStr(fechaConvertir,esResumida = false)
     if(esResumida)
     {
         fechaString = `${DIAS[dia]} ${diaMes}`
+    }
+
+    if(conHoras)
+    {
+        fechaString = `${DIAS[dia]} ${diaMes} a las ${hora}:${minutos}`;
     }
 
 

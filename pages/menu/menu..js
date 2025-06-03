@@ -1,3 +1,4 @@
+import convertirFechaStr from "/utils/convertirFechaStr.js";
 import { ObtenerHistorialRecienteLoca } from "/services/local/guardarHistorialReciente.js";
 import { getMenuSeleccionado } from "/services/local/guardarmenuesSemanal.js";
 import { guardarPedidoLocal } from "/services/local/guardarPedido.js";
@@ -56,8 +57,8 @@ function setDatosMenu(menu)
     let fechaConsumo = new Date(menu.fechaConsumo);
     let fechaCierre = new Date(menu.fechaCierre);
 
-    document.getElementById("fecha_consumo").textContent = fechaConsumo.toLocaleDateString();
-    document.getElementById("fecha_cierre").textContent = fechaCierre.toLocaleDateString()+" "+fechaCierre.toLocaleTimeString()+"hs";
+    document.getElementById("fecha_consumo").innerHTML = convertirFechaStr(fechaConsumo,false);
+    document.getElementById("fecha_cierre").innerHTML = convertirFechaStr(fechaCierre,true,true)+" hs";
 
     if(new Date() > fechaCierre)
     {
