@@ -1,7 +1,7 @@
-import { guardarPedidoLocal } from "../../services/local/guardarPedido.js";
-import getPedidoById from "../../services/web/getPedidoById.js";
-import { getPedidosSegunFechaConsumo } from "../../services/web/getPedidosSegunFechaConsumo.js";
-import TarjetaHistorialComponent from "../../ui/components/tarjetaHistorial/tarjetaHistorialComponent.js";
+import { guardarPedidoLocal } from "/services/local/guardarPedido.js";
+import getPedidoById from "/services/web/getPedidoById.js";
+import { getPedidosSegunFechaConsumo } from "/services/web/getPedidosSegunFechaConsumo.js";
+import TarjetaHistorialComponent from "/ui/components/tarjetaHistorial/tarjetaHistorialComponent.js";
 
 const $resultado = document.getElementById("resultado_pedidos");
 const $fechaInicio = document.getElementById("fecha_inicio");

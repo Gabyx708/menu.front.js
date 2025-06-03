@@ -1,5 +1,5 @@
-import { obtenerPedido } from "../../services/local/guardarPedido.js";
-import cancelarPedido from "../../services/web/eliminarPedido.js";
+import { obtenerPedido } from "/services/local/guardarPedido.js";
+import cancelarPedido from "/services/web/eliminarPedido.js";
 
 const pedido = obtenerPedido();
 

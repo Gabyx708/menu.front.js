@@ -1,5 +1,5 @@
-import { getUsuarioActual } from "../../services/local/guardarUsuario.js";
-import { cambiarPassword } from "../../services/web/cambiarPassword.js";
+import { getUsuarioActual } from "/services/local/guardarUsuario.js";
+import { cambiarPassword } from "/services/web/cambiarPassword.js";
 
 const usuario = getUsuarioActual();
 
