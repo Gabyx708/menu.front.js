@@ -4,14 +4,26 @@ import { guardarPedidoLocal } from "/services/local/guardarPedido.js";
 import hacerUnPedido from "/services/web/hacerUnPedido.js";
 import TarjetaOpcionMenuComponent from "/ui/components/tarjetaOpcionMenu/tarjetaOpcionMenuComponent.js";
 import ObtenerHistorialDeDosSemanas from "/services/local/guardarHistorialReciente.js";
+import { borrarHistorialLocal } from "/services/local/guardarHistorialReciente.js";
 
-function pintarMenu()
+async function pintarMenu()
 {
-    let menuActual = getMenuSeleccionado();
+    let existeUnPedidoParaElMenu = await confirmarSiExisteUnPedido()
+    let menuActual = await getMenuSeleccionado();
 
-    cargarOpciones(menuActual);
     setDatosMenu(menuActual);
+    cargarOpciones(menuActual);
+
+      await new Promise(requestAnimationFrame);
+
+  const fechaCierre = new Date(menuActual.fechaCierre);
+  const yaCerro = new Date() > fechaCierre;
+
+  if (yaCerro || existeUnPedidoParaElMenu) {
+    MostrarMenuCerrado( existeUnPedidoParaElMenu ? "YA SE HIZO UN PEDIDO" : "MENU CERRADO" );
+  }
 }
+
 
 function cargarOpciones(menu)
 {
@@ -59,20 +71,13 @@ function setDatosMenu(menu)
 
     document.getElementById("fecha_consumo").innerHTML = convertirFechaStr(fechaConsumo,false);
     document.getElementById("fecha_cierre").innerHTML = convertirFechaStr(fechaCierre,true,true)+" hs";
-
-    if(new Date() > fechaCierre)
-    {
-        MostrarMenuCerrado();
-    }
-
-    MostrarSiExistePedido(menu);
 }
 
 
 async function prepararPeticion(idMenu,idPlato)
 {
     Swal.fire({
-        title: "quieres confirmar tu pedio?",
+        title: "quieres confirmar tu pedido?",
         showCancelButton: true,
         icon: "info",
         confirmButtonText: "confirmar",
@@ -86,81 +91,99 @@ async function prepararPeticion(idMenu,idPlato)
       });
 }
 
-const hacerPeticion = async(idMenu,idPlato) => {
+const hacerPeticion = async (idMenu, idPlato) => {
 
-    let response = await hacerUnPedido(idMenu,idPlato);
-    let responseContent = await response.json();
+  // Mostrar spinner de carga antes de la petición
+  Swal.fire({
+    title: "Realizando pedido...",
+    html: "Por favor, espere un momento <b></b>",
+    allowOutsideClick: false,
+    didOpen: () => {
+      Swal.showLoading(); 
+    }
+  });
 
+  try {
+    const response = await hacerUnPedido(idMenu, idPlato);
+    const responseContent = await response.json();
 
-    if(response.ok)
-    {
+    if (response.ok) {
+     
+      await Swal.fire({
+        title: "¡Pedido exitoso!",
+        text: `Se creó el pedido: ${responseContent.data.id}`,
+        icon: "success",
+        confirmButtonText: "OK"
+      });
 
-        Swal.fire({
-            title: "pedido exitoso!",
-            text: `se creo el pedido: ${responseContent.data.id}`,
-            icon: "success"
-          });
+      await guardarPedidoLocal(responseContent.data);
+      borrarHistorialLocal();
 
-          await guardarPedidoLocal(responseContent.data);
-          location.href = "/pages/pedido/pedido.html";
-          
+      location.href = "/pages/pedido/pedido.html";
+    } else {
+      
+      Swal.fire({
+        title: "Ocurrió un problema",
+        icon: "error",
+        text: responseContent.message || "No se pudo crear el pedido."
+      });
     }
 
-    if(!response.ok)
-    {
-            Swal.fire({
-                title: "ocurrio un problema!",
-                icon: "error",
-                text: `${responseContent.message}`
-            })
-    }
-}
+  } catch (error) {
 
-function MostrarMenuCerrado() {
-
-    let opciones = document.getElementsByClassName("tarjeta-opcion");
-    const alerta = document.getElementById("alerta-menu-cerrado");
-
-    if (alerta) {
-        alerta.style.display = "block"; 
-    }
-
-    Array.from(opciones).forEach((tarjeta) => {
-        tarjeta.classList.add("sin-stock");
+    Swal.fire({
+      title: "Error de red",
+      text: "No se pudo conectar con el servidor.",
+      icon: "error"
     });
+  }
+};
+
+
+function MostrarMenuCerrado(mensaje = "MENU CERRADO") {
+
+  const tarjetas = document.querySelectorAll(".tarjeta-opcion");
+  tarjetas.forEach((tarjeta) => {
+    tarjeta.classList.add("sin-stock");
+    // Deshabilitar botones dentro de la tarjeta
+    tarjeta.querySelectorAll(".btn-pedir-opcion").forEach(btn => {
+      btn.disabled = true;
+      btn.classList.add("disabled");
+      btn.setAttribute("aria-disabled", "true");
+    });
+  });
+
+  const alerta = document.getElementById("alerta-menu-cerrado");
+  if (alerta) {
+    alerta.style.display = "block";
+    alerta.textContent = mensaje;
+  }
 }
+
 
 
 pintarMenu();
 
 
-function MostrarSiExistePedido(menu)
+function MostrarSiExistePedido()
 {
-    let pedidos = ObtenerHistorialDeDosSemanas();
+  MostrarMenuCerrado()
+  const alerta = document.getElementById("alerta-menu-cerrado");
+  alerta.textContent = 'YA SE HIZO UN PEDIDO'
+}
 
-    let pedidosConfirmados = Array.from(pedidos).filter(p => p.estado === 1);
+async function confirmarSiExisteUnPedido()
+{
+   let menuActual =  await getMenuSeleccionado();
 
-    pedidosConfirmados.forEach((p) => {
+   let historial = await ObtenerHistorialDeDosSemanas()
+   let pedido = historial.filter(p=> p.estado == 1)
+                        .filter(p => new Date(p.fechaEntrega).getDate() == new Date(menuActual.fechaConsumo).getDate())
 
-       let fechaConsumoMenu = new Date(menu.fechaConsumo);
-       let fechaEntregaPedido = new Date(p.fechaEntrega);
-
-       if(fechaConsumoMenu.getDate() == fechaEntregaPedido.getDate())
-       {
-            const alerta = document.getElementById("alerta-menu-cerrado");
-            let opciones = document.getElementsByClassName("tarjeta-opcion");
-
-
-            if (alerta) {
-                alerta.style.display = "block";
-                alerta.textContent = "YA HICISTE UN PEDIDO" 
-                alerta.style.backgroundColor = "green"
-
-                
-                Array.from(opciones).forEach((tarjeta) => {
-                tarjeta.classList.add("sin-stock");
-                });
-            }
-       }
-    })
+   if(pedido.length === 0)
+   {
+      return false;
+   }
+   return true;
+  
 }

@@ -41,3 +41,8 @@ async function recuperarHistorialSegunPeriodo(inicio,fin)
 
     return historialPedidos;
 }
+
+export function borrarHistorialLocal()
+{
+  sessionStorage.removeItem('historial')
+}

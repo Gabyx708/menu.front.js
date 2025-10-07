@@ -31,7 +31,7 @@ function setMenuSeleccionado(menu)
 }
 
 function getMenuSeleccionado()
-{
+{   
     return JSON.parse(sessionStorage.getItem("menuSeleccionado"));
 }
 

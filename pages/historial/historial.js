@@ -45,7 +45,7 @@ async function cargarHistorial() {
 
     let data = await response.json();
     let listaResultados = data.data.resultados;  
-    let listaPedidos =  listaResultados.sort((a, b) => new Date(b.fechaEntrega) - new Date(a.fechaEntrega));
+    let listaPedidos =  listaResultados.sort((a, b) => new Date(a.fechaEntrega) - new Date(b.fechaEntrega));
 
     $resultado.innerHTML = "";
 

@@ -1,3 +1,4 @@
+import { borrarHistorialLocal } from "/services/local/guardarHistorialReciente.js";
 import { obtenerPedido } from "/services/local/guardarPedido.js";
 import cancelarPedido from "/services/web/eliminarPedido.js";
 
@@ -80,6 +81,7 @@ async function MostarPopUpCancelar()
             if(!responseContent.isSuccess)
             {
                 alert(responseContent.message);
+                borrarHistorialLocal();
                 return;
             }
 
