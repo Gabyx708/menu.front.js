@@ -38,13 +38,39 @@
 }
 
 
-.alerta-pedido-hecho {
-    display: none; /* Oculta inicialmente */
+.texto-confirmado {
+    display: block; 
     color: white;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
     padding: 0.5rem;
     width: 100%;
     font-weight: bold;
     border-radius: 5px;
-    background-color: green;
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+}
+
+.menu-sin-confirmar
+{
+    background-color: #FF3A29ed;
+}
+
+.menu-confirmado
+{
+      background-color: #4ED964;
+}
+
+.item-pedido
+{
+    background-color: bisque;
+    padding: 1rem;
+    border-radius: 10px;
+    margin: 0.1rem;
+    margin-top: 1rem;
+    font-weight: bold;
+}
+
+.item-pedido:empty {
+  padding: 0;
+  background: transparent;
+  border: none;
 }

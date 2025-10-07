@@ -1,31 +1,43 @@
+import { obtenerLunesSemanaActual,obtenerLunesDentroDeDosSemanas } from "/utils/recuperarLunes.js";
 import { getPedidosSegunFechaConsumo } from "/services/web/getPedidosSegunFechaConsumo.js";
 
-export default async function ObtenerHistorialReciente()
+export default async function ObtenerHistorialDeDosSemanas()
 {
+    let historialLocal = ObtenerHistorialRecienteLocal();
 
-    const fechaActual = new Date();
-    const diaSemana = fechaActual.getDay();
-    const diasHastaLunes = (diaSemana + 6) % 7; // convierte domingo (0) en 6, lunes (1) en 0, etc.
+    if(historialLocal)
+    {
+        return historialLocal;
+    }
 
-    const lunesInicioSemana = new Date(fechaActual);
-    lunesInicioSemana.setDate(fechaActual.getDate() - diasHastaLunes);
-    const lunesSiguiente = new Date(lunesInicioSemana);
-    lunesSiguiente.setDate(lunesInicioSemana.getDate() + 7);
+    const lunesReciente =  obtenerLunesSemanaActual();
+    const lunesEnDosSemanas = obtenerLunesDentroDeDosSemanas();
 
-    console.log("Lunes de esta semana:", lunesInicioSemana);
-    console.log("Lunes de la próxima semana:", lunesSiguiente);
+    let historialPedidos = await recuperarHistorialSegunPeriodo(lunesReciente,lunesEnDosSemanas)
 
-    let responseHistorial = await getPedidosSegunFechaConsumo(lunesInicioSemana,lunesSiguiente);
-    let data = await responseHistorial.json();
-    
-    let pedidos = data.data.resultados;
+    guardarHistorialEnLocal(historialPedidos)
 
-    sessionStorage.setItem('reciente',JSON.stringify(pedidos));
-
-    return pedidos;
+    return historialPedidos;
 }
 
-export function ObtenerHistorialRecienteLoca()
+
+function ObtenerHistorialRecienteLocal()
 {  
-    return JSON.parse(sessionStorage.getItem('reciente'));
+    return JSON.parse(sessionStorage.getItem('historial'));
+}
+
+
+function guardarHistorialEnLocal(historial)
+{
+    sessionStorage.setItem('historial',JSON.stringify(historial));
+}
+
+async function recuperarHistorialSegunPeriodo(inicio,fin)
+{
+    let responseHistorial = await getPedidosSegunFechaConsumo(inicio,fin);
+    let data = await responseHistorial.json();
+    
+    let historialPedidos = data.data.resultados;
+
+    return historialPedidos;
 }

@@ -8,11 +8,11 @@ main {
 
 #menues_semana {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     flex-wrap: wrap;
     justify-content: center;
     align-items: stretch;
-    gap: 1vw;
+    gap: 1rem;
     padding: 2vw;
     width: 90%;
     margin: auto;

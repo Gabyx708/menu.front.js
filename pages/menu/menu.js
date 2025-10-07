@@ -1,9 +1,9 @@
 import convertirFechaStr from "/utils/convertirFechaStr.js";
-import { ObtenerHistorialRecienteLoca } from "/services/local/guardarHistorialReciente.js";
 import { getMenuSeleccionado } from "/services/local/guardarmenuesSemanal.js";
 import { guardarPedidoLocal } from "/services/local/guardarPedido.js";
 import hacerUnPedido from "/services/web/hacerUnPedido.js";
 import TarjetaOpcionMenuComponent from "/ui/components/tarjetaOpcionMenu/tarjetaOpcionMenuComponent.js";
+import ObtenerHistorialDeDosSemanas from "/services/local/guardarHistorialReciente.js";
 
 function pintarMenu()
 {
@@ -136,7 +136,7 @@ pintarMenu();
 
 function MostrarSiExistePedido(menu)
 {
-    let pedidos = ObtenerHistorialRecienteLoca();
+    let pedidos = ObtenerHistorialDeDosSemanas();
 
     let pedidosConfirmados = Array.from(pedidos).filter(p => p.estado === 1);
 

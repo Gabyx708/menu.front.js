@@ -19,7 +19,8 @@ export default function TarjetaMenuComponent(menu) {
         <hr>
         <p><strong>Fecha cierre:</strong> ${diaCierre}/${mesCierre} ${horaCierre}:${minutoCierre} hs</p>
         <p class="menu_id"><strong>ID:</strong> ${menu.id}</p>
-        <div class="alerta-pedido-hecho">Pedido hecho</div>
+        <div class="texto-confirmado">texto</div>
+        <div class="item-pedido">contenido pedido</div>
         <button class="btn-pedir" data-id="${menu.id}">PEDIR</button>
     </div>
 `;
