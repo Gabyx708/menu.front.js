@@ -22,10 +22,10 @@ window.onload = async () => {
         menuesLocal = obtenerMenuesLocal();
     }
 
-    let menues = Array.from(menuesLocal);
-    agregarTarjetasMenu(menues);
+    let menuesParaLaSemana = Array.from(menuesLocal);
+    agregarTarjetasMenu(menuesParaLaSemana);
 
-    MostrarSiExistePedidoParaMenu(historialReciente,menues);
+    MostrarSiExistePedidoParaMenu(historialReciente,menuesParaLaSemana);
 };
 
 
@@ -85,23 +85,24 @@ function irPaginaMenu()
     window.location.href = '../menu/menu.html';
 }
 
-function MostrarSiExistePedidoParaMenu(pedidos, menues) {
+function MostrarSiExistePedidoParaMenu(historial, menuesParaLaSemana) {
+    
   const confirmado = 1;
 
   // Fechas (YYYY-MM-DD) con pedido confirmado
   const fechasConfirmadas = new Set(
-    pedidos
+    historial
       .filter(p => p.estado === confirmado)
       .map(p => normalizarFecha(p.fechaEntrega))
   );
 
   // Para cada menú, decidí una sola vez su estado
-  menues.forEach(m => {
+  menuesParaLaSemana.forEach(m => {
     const fechaMenu = normalizarFecha(m.fechaConsumo);
 
     if (fechasConfirmadas.has(fechaMenu)) {
 
-        let pedido = pedidos
+        let pedido = historial
       .filter(p => p.estado === confirmado)
       .filter(p => p.fechaEntrega === m.fechaConsumo)
 
