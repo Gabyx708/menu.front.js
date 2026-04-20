@@ -77,3 +77,23 @@ p {
 #cant-pedidos-cancelados {
     color: #c62828;
 }
+
+#selector-mes {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+#selector-mes label {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+#selector-mes select {
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    cursor: pointer;
+}
