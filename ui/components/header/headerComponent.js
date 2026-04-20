@@ -15,6 +15,7 @@ export default function HeaderComponent() {
             ${crearPestaña("Home", "house.png", "/pages/home/home.html")}
             ${crearPestaña("Mi historial", "clock.png", "/pages/historial/historial.html")}
             ${crearPestaña("Mi perfil", "userWhite.png", "/pages/perfil/perfil.html")}
+            ${crearPestaña("Mis gastos", "coin.png", "/pages/gastos/gastos.html")}
             ${crearPestaña("Cerrar sesión", "exit.png", "/cerrar.html")}
         </ul>
     </nav>
