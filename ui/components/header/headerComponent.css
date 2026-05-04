@@ -69,6 +69,27 @@
     font-size: 16px;
 }
 
+
+/* Contenedor usuario */
+#usuario p {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #fff; /* o el color que ya uses */
+}
+
+/* Apodo destacado */
+.apodo {
+    font-weight: 700;
+    color: #fff; /* tu verde */
+    letter-spacing: 0.5px;
+}
+
+/* Opcional: leve glow moderno */
+.apodo {
+    text-shadow: 0 0 4px rgba(40, 167, 69, 0.3);
+}
+
 /* Responsive: colapsar a columnas en móviles */
 @media (max-width: 600px) {
 

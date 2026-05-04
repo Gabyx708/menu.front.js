@@ -11,6 +11,7 @@ section {
     padding: 25px;
     border-radius: 12px;
     width: 320px;
+    height: max-content;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
@@ -78,3 +79,8 @@ p {
     color: #c62828;
 }
 
+#mes{
+    font-size: large;
+    font-weight: bold;
+    padding: 1%;
+}

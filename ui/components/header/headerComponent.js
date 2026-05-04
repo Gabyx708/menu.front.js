@@ -9,7 +9,7 @@ export default function HeaderComponent() {
     header.innerHTML = `
     <nav class="header-nav">
         <div id="usuario">
-         <p>Bienvenido: ${apodo} !</p>
+         <p>Bienvenido: <span class="apodo">${apodo}</span> !</p>
         </div>
         <ul class="nav-list">
             ${crearPestaña("Home", "house.png", "/pages/home/home.html")}
