@@ -1,5 +1,5 @@
 import convertirFechaStr from "/utils/convertirFechaStr.js";
-import { getMenuSeleccionado } from "/services/local/guardarmenuesSemanal.js";
+import { getMenuSeleccionado } from "/services/local/guardarMenuesSemanal.js";
 import { guardarPedidoLocal } from "/services/local/guardarPedido.js";
 import hacerUnPedido from "/services/web/hacerUnPedido.js";
 import TarjetaOpcionMenuComponent from "/ui/components/tarjetaOpcionMenu/tarjetaOpcionMenuComponent.js";
@@ -21,6 +21,11 @@ async function pintarMenu()
 
   if (yaCerro || existeUnPedidoParaElMenu) {
     MostrarMenuCerrado( existeUnPedidoParaElMenu ? "YA SE HIZO UN PEDIDO" : "MENU CERRADO" );
+  }
+
+  if(existeUnPedidoParaElMenu)
+  {
+    MostrarPedidoHecho()
   }
 }
 
@@ -186,4 +191,55 @@ async function confirmarSiExisteUnPedido()
    }
    return true;
   
+}
+
+async function MostrarPedidoHecho() {
+  
+  let alertaPedidHecho = document.getElementById("alerta-pedido-hecho")
+  alertaPedidHecho.style.display = "block"
+
+  let menuActual = await getMenuSeleccionado();
+  let historial = await ObtenerHistorialDeDosSemanas();
+
+  let pedido = historial
+    .filter(p => p.estado == 1)
+    .filter(p => 
+      new Date(p.fechaEntrega).toDateString() === 
+      new Date(menuActual.fechaConsumo).toDateString()
+    );
+
+  console.log(pedido);
+
+  if (pedido.length === 0) return;
+
+  let pedidoActual = pedido[0];
+
+  // Contenedor
+  let contenedor = document.getElementById("lista-comida");
+  contenedor.innerHTML = "";
+
+  // Render de items
+  pedidoActual.items.forEach(item => {
+    let linea = document.createElement("p");
+    linea.textContent = `${item.cantidad}x ${item.descripcion} - $${item.precio}`;
+    contenedor.appendChild(linea);
+  });
+
+  // Mostrar total
+  let total = document.createElement("p");
+  total.innerHTML = `<strong>Total: $${pedidoActual.montoTotal}</strong>`;
+  contenedor.appendChild(total);
+
+  // Botón cancelar
+  document.getElementById("btn-cancelar-pedido").onclick = async () => {
+    let confirmar = confirm("¿Seguro que querés cancelar el pedido?");
+    if (!confirmar) return;
+
+    await CancelarPedido(pedidoActual.id);
+
+    alert("Pedido cancelado");
+    
+    // opcional: refrescar UI
+    contenedor.innerHTML = "";
+  };
 }
