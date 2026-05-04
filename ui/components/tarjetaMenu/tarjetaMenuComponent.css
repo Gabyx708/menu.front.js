@@ -1,76 +1,184 @@
 .tarjeta-menu {
-    width: 1fr;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    min-height: 260px;
+
     padding: 1.8em;
-    margin: 0.5em;
-    border-radius: 8px;
-    background-color: #fff;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    margin: 0.7em;
+
+    border-radius: 12px;
+    background: linear-gradient(145deg, #ffffff, #f7f7f7);
+
+    box-shadow: 0 6px 14px rgba(0,0,0,0.15);
     font-family: Arial, sans-serif;
-    transition: transform 0.2s ease;
+
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
+/* Hover más limpio */
+.tarjeta-menu:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 22px rgba(0,0,0,0.2);
+}
 
 .tarjeta-menu p {
     margin: 6px 0;
+    color: #444;
 }
 
-.tarjeta-menu:hover {
-    transform: scale(1.02);
+/* Fecha principal */
+.tarjeta-menu p:first-child {
+    font-size: 1.3rem;
+    text-align: center;
+    margin-bottom: 10px;
 }
 
-
-.tarjeta-menu button {
-    margin-top: 10px;
-    padding: 8px 12px;
-    background-color: #0066cc;
-    color: white;
+/* Separador más suave */
+.tarjeta-menu hr {
     border: none;
-    border-radius: 4px;
+    border-top: 1px solid #eee;
+    margin: 10px 0;
+}
+
+/* ID más discreto */
+.menu_id {
+    font-size: 9pt;
+    color: #777;
+}
+
+/* Estado confirmado / no confirmado */
+.texto-confirmado {
+    display: block;
+    padding: 0.6rem;
+    width: 100%;
+    font-weight: bold;
+    border-radius: 6px;
+    text-align: center;
+    margin-top: 8px;
+}
+
+/* Colores más suaves */
+.menu-sin-confirmar {
+    background-color: #ff3a29;
+    color: white;
+}
+
+.menu-confirmado {
+    background-color: #28a745;
+    color: white;
+}
+
+/* Contenido del pedido */
+.item-pedido {
+    background-color: #fff3cd;
+    padding: 0.9rem;
+    border-radius: 8px;
+    margin-top: 12px;
+    font-weight: 600;
+    border: 1px solid #ffeeba;
+}
+
+/* Oculto si está vacío */
+.item-pedido:empty {
+    display: none;
+}
+
+/* Botón más consistente con tu app */
+.tarjeta-menu button {
+    margin-top: auto;
+
+    padding: 10px;
+    font-size: 0.95rem;
+    font-weight: 600;
+
+    background: linear-gradient(135deg, #0066cc, #004999);
+    color: white;
+
+    border: none;
+    border-radius: 8px;
+
     cursor: pointer;
+    transition: all 0.15s ease;
 }
 
 .tarjeta-menu button:hover {
-    background-color: #004999;
+    background: linear-gradient(135deg, #1a7be0, #0066cc);
 }
 
-.menu_id{
-    font-size: 10pt;
+.tarjeta-menu button:active {
+    transform: scale(0.96);
 }
 
+.tarjeta-menu {
+    display: flex;
+    flex-direction: column;
 
+    min-height: 220px; /* antes 260 → más compacta */
+
+    padding: 1.4em;
+    margin: 0.7em;
+
+    border-radius: 12px;
+    background: linear-gradient(145deg, #ffffff, #f7f7f7);
+
+    box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+    font-family: Arial, sans-serif;
+
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Título (fecha) más compacto */
+.tarjeta-menu p:first-child {
+    font-size: 1.2rem;
+    text-align: center;
+    margin-bottom: 6px;
+}
+
+/* Menos aire general */
+.tarjeta-menu p {
+    margin: 4px 0;
+}
+
+/* Separador más chico */
+.tarjeta-menu hr {
+    margin: 8px 0;
+}
+
+/* Estado */
 .texto-confirmado {
-    display: block; 
-    color: white;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-    padding: 0.5rem;
-    width: 100%;
-    font-weight: bold;
-    border-radius: 5px;
-    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+    padding: 0.45rem;
+    margin-top: 6px;
+    margin-bottom: 6px; /* agrega aire abajo */
 }
 
-.menu-sin-confirmar
-{
-    background-color: #FF3A29ed;
+/* ITEM PEDIDO (clave) */
+.item-pedido {
+    background-color: #fff3cd;
+    padding: 0.7rem 0.8rem;
+
+    border-radius: 8px;
+    margin-top: 6px;     /* antes 12px */
+    margin-bottom: 8px;  /* separacion del boton */
+
+    font-weight: 600;
+    border: 1px solid #ffeeba;
+
+    text-align: center;
 }
 
-.menu-confirmado
-{
-      background-color: #4ED964;
-}
-
-.item-pedido
-{
-    background-color: bisque;
-    padding: 1rem;
-    border-radius: 10px;
-    margin: 0.1rem;
-    margin-top: 1rem;
-    font-weight: bold;
-}
-
+/* Oculto si está vacío */
 .item-pedido:empty {
-  padding: 0;
-  background: transparent;
-  border: none;
+    display: none;
+}
+
+/* BOTÓN */
+.tarjeta-menu button {
+    margin-top: auto; /* mantiene abajo */
+
+    padding: 9px;
+    font-size: 0.95rem;
+
+    border-radius: 8px;
 }

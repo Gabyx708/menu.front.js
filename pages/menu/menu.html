@@ -14,32 +14,45 @@
     <header></header>
 
     <section>
-      <header>
-        <h2>
-          Información del menú:
-          <p id="menu_id"></p>
-        </h2>
-        <p>
-          <h3>Cuando se come?:</h3> <span id="fecha_consumo"></span>
-        </p>
-        <p>
-          <h3>Hasta cuando podes pedir?:</h3>
-          <span id="fecha_cierre"></span>
-        </p>
-        <p>
-            <strong id="alerta-menu-cerrado">NO ADMITE MAS PEDIDOS</strong>
-          </p>
 
-          <div id="alerta-pedido-hecho">
-              <strong>TU PEDIDO ES</strong>
-                <div id="lista-comida"></div>
-                <button id="btn-cancelar-pedido">CANCELACION RAPIDA</button>
-            </div>
+  <header>
 
-        <hr />
-      </header>
-      <section id="opciones_menu"></section>
-    </section>
+    <h2>
+      Información del menú:
+      <span id="menu_id"></span>
+    </h2>
+
+    <div class="bloque-info">
+      <h3>Cuando se come?</h3>
+      <span id="fecha_consumo"></span>
+    </div>
+
+    <div class="bloque-info">
+      <h3>Hasta cuando podes pedir?</h3>
+      <span id="fecha_cierre"></span>
+    </div>
+
+    <div>
+      <strong id="alerta-menu-cerrado">
+        NO ADMITE MAS PEDIDOS
+      </strong>
+    </div>
+
+    <div id="alerta-pedido-hecho">
+      <strong>TU PEDIDO ES</strong>
+      <div id="lista-comida"></div>
+      <button id="btn-cancelar-pedido">CANCELACION RAPIDA</button>
+    </div>
+
+    <hr />
+
+  </header>
+
+  <section id="opciones_menu"></section>
+
+</section>
+
+
     <footer></footer>
   </body>
   <script src="menu.js" type="module"></script>
